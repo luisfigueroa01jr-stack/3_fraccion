@@ -20,6 +20,8 @@ public:
 
     // Sobrecarga de operadores
     Fraccion operator+(const Fraccion& otra) const;
+    Fraccion operator-(const Fraccion& otra) const;
+    Fraccion operator*(const Fraccion& otra) const;
     bool operator==(const Fraccion& otra) const;
 
     // Permite imprimir con std::cout << fraccion

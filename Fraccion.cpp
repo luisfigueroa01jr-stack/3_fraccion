@@ -45,6 +45,23 @@ Fraccion Fraccion::operator+(const Fraccion& otra) const {
     return Fraccion(static_cast<int>(num / divisor), static_cast<int>(den / divisor));
 }
 
+// a/b - c/d = (a*d - c*b) / (b*d)
+Fraccion Fraccion::operator-(const Fraccion& otra) const {
+    long long num = static_cast<long long>(numerador) * otra.denominador
+                  - static_cast<long long>(otra.numerador) * denominador;
+    long long den = static_cast<long long>(denominador) * otra.denominador;
+    long long divisor = mcd(num, den);
+    return Fraccion(static_cast<int>(num / divisor), static_cast<int>(den / divisor));
+}
+
+// a/b * c/d = (a*c) / (b*d)
+Fraccion Fraccion::operator*(const Fraccion& otra) const {
+    long long num = static_cast<long long>(numerador) * otra.numerador;
+    long long den = static_cast<long long>(denominador) * otra.denominador;
+    long long divisor = mcd(num, den);
+    return Fraccion(static_cast<int>(num / divisor), static_cast<int>(den / divisor));
+}
+
 // a/b == c/d  si  a*d == c*b   (equivalentes, ej. 1/2 == 2/4)
 bool Fraccion::operator==(const Fraccion& otra) const {
     return static_cast<long long>(numerador) * otra.denominador
